@@ -93,7 +93,7 @@ CREATE TABLE Reserva (
     status ENUM('ativo', 'inativo') DEFAULt 'ativo'
     FOREIGN KEL (aluno_id) REFERENCES Aluno(id),
     FOREIGN KEL (livro_id) REFERENCES livro(id)
-   
+ 
 );
 
 -- Tbela Historicocoleitura
@@ -105,9 +105,31 @@ CREATE TABLE Historicocoleitura (
     data_fim DATA,
     FOREIGN KEL (aluno_id) REFERENCES Aluno(id),
     FOREIGN KEL (livro_id) REFERENCES livro(id)
-
 );
 
 -- Tabela sugestao
+CREATE TABLE sugestao (
+    id INT PRIMARY kel AUTO_INCREMENTE,
+    titulo VARCHAR(150),
+    autor VARCHAR(150),
+    categoria VARCHAR(50),
+    justificativa TEXT,
+    data_sugestao DATA,
+    aluno_id INT,
+    professor_id INT,
+    FOREIGN KEL (aluno_id) REFERENCES Aluno(id),
+    FOREIGN KEL (professor_id) REFERENCES livro(id)
+);
 
-
+ -- tabela relatorio 
+ CREATE TABLE relatorio (
+    tipo ENUM('mensal', 'turma', 'aluno', 'livros'),
+    periodo_inicio DATE,
+    periodo_fim DATA,
+    gerado_por_bibliotecario INT,
+    gerado_por_diretor INT,
+    gerado_por_supervisor INT,
+    FOREIGN KEL (gerado_por_bibliotecario) REFERENCES Aluno(id),
+    FOREIGN KEL (gerado_por_diretor) REFERENCES livro(id),
+    FOREIGN KEL (gerado_por_supervisor) REFERENCES supervisor(id)
+ );

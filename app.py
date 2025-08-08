@@ -1,5 +1,8 @@
 # app.py
 
+from db_confing import conecatar
+from crud import categoria
+
 from db_config import conectar
 
 def main():
@@ -23,3 +26,21 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def manu():
+    while True:
+        print("\n=== MENU SGB ===")
+        print("1. Criar categori")
+        print("2. listar categoria")
+        print("3. Atualizar Categoria")
+        print("4. Delete Categoria")
+        print("0. Sair")
+        print = input("Escolar uma opção: ")
+
+if open == "1":
+    nome = input("Nome da categoria:")
+    descriacao = input ("Descri")
+
+        
+    
+   
