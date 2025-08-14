@@ -24,8 +24,12 @@ def criar_emprestimo(aluno_id, livro_id, data_emprestimo=None, data_devolucao_pr
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def listar_emprestimos(so_abertos=False):
     try:
@@ -47,8 +51,11 @@ def listar_emprestimos(so_abertos=False):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
 
 def devolver_emprestimo(id_emprestimo, data_devolucao_real=None):
     try:
@@ -69,5 +76,8 @@ def devolver_emprestimo(id_emprestimo, data_devolucao_real=None):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")

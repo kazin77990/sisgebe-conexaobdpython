@@ -19,8 +19,11 @@ def criar_aluno(nome, email, senha, serie, status='ativo'):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-            try: conn.close()
-            except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
 
 def lista_alunos():
     try:
@@ -31,8 +34,12 @@ def lista_alunos():
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+         if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def obter_aluno(id_aluno):
     try:
@@ -46,15 +53,18 @@ def obter_aluno(id_aluno):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
 
 def atualizar_aluno(id_aluno, nome=None , email=None, senha=None, serie=None, status=None):
     try:
         conn = conectar()
         cursor = conn.cursor()
         campos=[]
-        valores[]
+        valores=[]
         if nome is not nome:
             campos.append("nome=%s"); valores.append(nome)
         if email is not nome:
@@ -75,10 +85,14 @@ def atualizar_aluno(id_aluno, nome=None , email=None, senha=None, serie=None, st
             return {"status":"aviso","mensagem":"Aluno não encontrado para atualizar."}
         return {"status":"sucesso","mensagem":"Aluno atualizar."}
     except Exception as e:
-        return {"status","erro","mensagem":str(e)}
+        return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def deletar_aluno(id_aluno):
     try:
@@ -92,6 +106,8 @@ def deletar_aluno(id_aluno):
     except Exception as e:
         return {"estatus":"erro","mensagem":str(e)}
     finally:
-        try: conn,closs()
-        except: pass
-
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")

@@ -1,53 +1,20 @@
-from db_config import conectar
+# db_config.py
 
-def criar_categoria(nome, descricao):
-    try:
-        conn = conectar()
-        cursor = conn.cursor()
-        cursor.execute("INSERT INTO Categoria (nome, descricao) VALUES (%s, %s)", (nome, descricao))
-        conn.commit()
-        return{"status": "sucesso", "mensagem":"Categoria criada com sucesso!"}
-    except Exception as e:
-        return{"status":"erro","mensagem":str(e)}
-    finally:
-        conn.close()
-        
-def listar_categorias():
-    try:
-        conn = conectar()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Categoria")
-        return cursor.fetchall()
-    except Exception as e:
-        return{"status":"erro","mensagem":str(e)}
-    finally:
-        conn.close()
+import mysql.connector
+from mysql.connector import Error
 
-def atualizar_categoria(id_categoria, novo_nome, nova_descricao):
+def conectar():
     try:
-        conn = conectar()
-        cursor = conn.cursor()
-        cursor.execute("UPDATE Categoria SET nome=%s, descricao=%s WHERE id=%s", 
-                    (novo_nome, nova_descricao, id_categoria))
-        conn.commit()
-        if cursor.rowcount == 0:
-            return{"status":"aviso","mensagem":"Nenhuma categoria encontrada para atualizar."}
-        return{"status":"sucesso","mensagem":"Categoria atualizada!"}
-    except Exception as e:
-        return{"status":"erro","mensagem":str(e)}
-    finally:
-        conn.close()
-
-def deletar_categoria(id_categoria):
-    try:
-        conn = conectar()
-        cursor = conn.cursor()
-        cursor.execute("DELETE FROM Categoria WHERE id=%s", (id_categoria,))
-        conn.commit()
-        if cursor.rowcount == 0:
-            return{"status":"aviso","mensagem":"Nenhuma categoria encontrada para deletar."}
-        return{"status":"sucesso","mensagem":"Categoria excluida!"}
-    except Exception as e:
-        return{"status":"erro","mensagem":str(e)}
-    finally:
-        conn.close()
+        conexao = mysql.connector.connect(
+            host='127.0.0.1',
+            port=3306,
+            user='root',    # Troque se necessário
+            password='eec123456@#$',        # Troque se necessário
+            database='SGB'  # Nome do seu banco
+        )
+        if conexao.is_connected():
+            print("Conexão bem-sucedida com o banco de dados!")
+            return conexao
+    except Error as e:
+        print(f"Erro ao conectar ao banco de dados: {e}")
+        return None

@@ -16,8 +16,12 @@ def criar_professor(nome, email, senha, disciplina=None, status='ativo'):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def listar_professores():
     try:
@@ -28,8 +32,12 @@ def listar_professores():
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+       if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def atualizar_professor(id_prof, nome=None, email=None, senha=None, disciplina=None, status=None):
     try:
@@ -50,8 +58,12 @@ def atualizar_professor(id_prof, nome=None, email=None, senha=None, disciplina=N
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def deletar_professor(id_prof):
     try:
@@ -64,5 +76,8 @@ def deletar_professor(id_prof):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+         if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")

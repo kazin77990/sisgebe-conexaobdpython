@@ -15,8 +15,12 @@ def criar_bibliotecario(nome, email, senha, status='ativo'):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+       if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def listar_bibliotecarios():
     try:
@@ -27,8 +31,11 @@ def listar_bibliotecarios():
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
 
 def atualizar_bibliotecario(id_b, nome=None, email=None, senha=None, status=None):
     try:
@@ -48,8 +55,12 @@ def atualizar_bibliotecario(id_b, nome=None, email=None, senha=None, status=None
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+        if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
+
 
 def deletar_bibliotecario(id_b):
     try:
@@ -62,5 +73,8 @@ def deletar_bibliotecario(id_b):
     except Exception as e:
         return {"status":"erro","mensagem":str(e)}
     finally:
-        try: conn.close()
-        except: pass
+         if conn is not None:
+            try:
+                conn.closs()
+            except Exception as e:
+                print(f"Erro ao fecha conexão: {e}")
