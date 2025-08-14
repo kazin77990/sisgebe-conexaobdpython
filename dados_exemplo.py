@@ -25,6 +25,26 @@ criar_aluno("Maria liveira", "maria@escola.local", "senha123", "8B")
 
 #professores
 criar_professor("Carlos Souza", "carlos@escola.local", "senha123", disciplina="História")
-criar_professor("patrícia Lima", "patricia@scola.local", "senha123")
+criar_professor("patrícia Lima", "patricia@scola.local", "senha123", disciplina="português")
 
+# bibliotecario / direto / sueprvisaor
+criar_bibliotecario("Ana bibli","ana.bibli@escola,local","senha123")
+criar_diretor("joão Diretor","joao.dir@escola.local","senha1123")
+criar_supervisor("Supervisor X", "supx@escola.local","senha123")
+
+# emprestimo exemplo (aluno 1 para livro 1)
+criar_emprestimo(1,1)
+# reserva exemplo
+criar_reserva(2,2)
+# sugestão
+criar_sugestao("Livro Novo","Autor X", "Ficção", "Seria bom ter este livro.", aluno_id=1)
+#hitstória 
+criar_historico(1,1)
+# reserva exemplo
+criar_relatorio("mensal","2025-08-01","2025-08-31", gerado_por_bibliotecario=1)
+
+print("Dados de exemplo inseridos (verifique ids e tabela).")
+
+if __name__ == "__main__":
+    popular()
 
